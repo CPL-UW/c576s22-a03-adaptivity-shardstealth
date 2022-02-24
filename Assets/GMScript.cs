@@ -21,6 +21,7 @@ public class GMScript : MonoBehaviour
     private int _difficulty;
     private int _fixedUpdateFramesToWait = 10;
     private int _fixedUpdateCount;
+    private bool _easyMode = false;
 
     // ReSharper disable once InconsistentNaming
     public bool DEBUG_MODE;
@@ -311,7 +312,7 @@ public class GMScript : MonoBehaviour
     {
         if (0 != _fixedUpdateCount++ % _fixedUpdateFramesToWait) return;
         DoTetrisDown();
-        if (_inARow > _difficulty)
+        if (_inARow > _difficulty && !_easyMode)
         {
             _difficulty = _inARow;
             if (_fixedUpdateFramesToWait > 1)
@@ -365,5 +366,9 @@ public class GMScript : MonoBehaviour
         }
     } 
     
-   
+   public void SetEasyMode()
+    {
+        Debug.Log("SetEasyMode");
+        _easyMode = true;
+    }
 }
